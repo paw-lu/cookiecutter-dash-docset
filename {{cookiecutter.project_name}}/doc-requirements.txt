@@ -1,0 +1,1 @@
+{{ cookiecutter.installable_name }}=={{ cookiecutter.library_version }}

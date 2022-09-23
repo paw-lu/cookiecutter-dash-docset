@@ -1,0 +1,13 @@
+{
+  "library_name": "pip",
+  "library_repository_name": "{{ cookiecutter.library_name|lower }}",
+  "installable_name": "{{ cookiecutter.library_repository_name }}",
+  "library_version": "22.3",
+  "library_owner": "pypa",
+  "github_username": "paw-lu",
+  "your_name": "Paulo S. Costa",
+  "project_name": "{{ cookiecutter.library_repository_name|lower }}-dash-docset",
+  "documentation_url": "https://pip.pypa.io/en/stable/",
+  "python_version": "3.10",
+  "_extensions": ["cookiecutter.extensions.JsonifyExtension"]
+}
