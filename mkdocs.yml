@@ -1,0 +1,52 @@
+site_name: Cookiecutter Dash docset
+repo_url: https://github.com/paw-lu/cookiecutter-dash-docset
+plugins:
+  - search
+  - social
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - content.code.annotate
+
+  icon:
+    repo: material/github
+    logo: material/cookie
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: teal
+      toggle:
+        name: Switch to dark mode
+        icon: material/brightness-2
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: cyan
+      toggle:
+        name: Switch to light mode
+        icon: material/brightness-5
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.highlight:
+      use_pygments: true

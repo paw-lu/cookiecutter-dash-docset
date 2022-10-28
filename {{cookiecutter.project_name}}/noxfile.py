@@ -61,9 +61,13 @@ def clone(session: Session) -> None:
             raise ValueError("Did not find a tag name for the latest release")
 
 
+{# --8<-- [start:docs] -#}
+
 @nox.session(python=PYTHON, tags=["build"])
 def docs(session: Session) -> None:
     """Build {{ cookiecutter.library_name }}'s docs."""
+    # Remove the NotImplemented error once the correct doc build steps
+    # have been added
     raise NotImplemented(
         "Replace starter code below with correct docs build steps."
     )
@@ -81,13 +85,21 @@ def docs(session: Session) -> None:
         session.run("make", "docs", external=True)
 
 
+{# --8<-- [end:docs] -#}
+
+{# --8<-- [start:icon] -#}
+
 @nox.session(python=False, tags=["build"])
 def icon(session: Session) -> None:
     """Create dash icon."""
     for size, file_name in (("16x16", "icon.png"), ("32x32", "icon@2x.png")):
         # Using convert instead of magick since only the former is
         # available by default right now in ubuntu-latest
-        raise NotImplementedError("Specify the correct path to the icon")
+        # Remove the NotImplementedError once the correct icon path has
+        # been added
+        raise NotImplementedError(
+            "Specify the correct path to the icon"
+        )
         session.run(
             "convert",
             "{{ cookiecutter.library_repository_name }}/path/to/icon.png",  # Specify correct path here
@@ -103,6 +115,8 @@ def icon(session: Session) -> None:
             external=True,
         )
 
+
+{# --8<-- [end:icon] -#}
 
 @nox.session(python=PYTHON, tags=["build"])
 def dash(session: Session) -> None:
@@ -234,7 +248,7 @@ def fork(session: Session) -> None:
             )
 
             if isinstance(origin_url, str):
-                token_url = _add_github_token(origin_url, github_token=github_token)
+                token_url = n_add_github_token(origin_url, github_token=github_token)
                 session.run("git", "remote", "remove", "origin", external=True)
                 session.run("git", "remote", "add", "origin", token_url, external=True)
 
