@@ -13,18 +13,19 @@ and contributing to [Kapeli/Dash-User-Contributions].
 [Dash][^1] is an app that lets you instantly search through documentation sets offline.
 [Hynek Schlawack has a great writeup on the benefits of using Dash.](https://hynek.me/articles/productive-fruit-fly-programmer/)
 If you find yourself
-with dozen documentation tabs open
-and repeatedly searching for how to use the same APIs,
+with dozen of documentation tabs open
+or repeatedly searching for the same APIs,
 [Dash] might be useful for you.
 
-[Dash] comes with quite a few documentation sets,
-[but you can generate your own as well](https://kapeli.com/docsets).[^2]
+[Dash] comes with a few documentation sets,
+but if a library isn't included
+[you can always generate your own documentation set](https://kapeli.com/docsets).[^2]
 To make your generated documentation sets available to others
 you can contribute them to [Kapeli/Dash-User-Contributions].
 
 However,
 if you want to keep things up to date,
-when a new version of a library releases
+each time new version of a library releases
 you need to:
 
 1. Clone the library
@@ -46,7 +47,7 @@ and automatically re-runs it on [GitHub Actions] with a new release of the libra
 
 ## Features
 
-- Automates the creation of library docsets
+- Automates the creation of library documentation sets
 - Automatically detects new library release
 - Generates pull requests against dash
 - Provides checks to see if build stale
@@ -129,8 +130,8 @@ add the installation steps in `.github/actions/build_docs.yml`
 
 ## How it works
 
-Cookiecutter Dash docset automates
-building a library's docset
+Cookiecutter Dash documentation sets automates
+building a library's documentation sets
 and uploading it to the user contribution repository
 each time a new version of the library releases.
 
@@ -179,10 +180,21 @@ This template sets up the following chain of triggers:
    triggers the newest release of the library to be cloned.
 6. After cloning,
    the doc build steps are ran.
-7. [doc2dash] is ran against the build documentation to create the docset
+7. [doc2dash] is ran against the build documentation to create the documentation set
 8. A pull request is generated for [Kapeli/Dash-User-Contributions]
-   with the new docset.
+   with the new documentation set.
 
-[cookiecutter]: (https://github.com/cookiecutter/cookiecutter)
-[doc2dash]: https://doc2dash.readthedocs.io/en/stable/
-[kapeli/dash-user-contributions]: (https://github.com/Kapeli/Dash-User-Contributions)
+[^1]:
+    There are multiple alternatives as well—like
+    [Zeal](https://zealdocs.org/),
+    [Velocity](https://velocity.silverlakesoftware.com/),
+    [Helm Dash](https://github.com/dash-docs-el/helm-dash),
+    and [dasht](https://github.com/sunaku/dasht)
+
+[^2]: Tools like [doc2dash] help automate some of the generation.
+
+[cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[dash]: https://kapeli.com/dash
+[doc2dash]: https://doc2dash.readthedocs.io/en/stable
+[github actions]: https://github.com/features/actions
+[kapeli/dash-user-contributions]: https://github.com/Kapeli/Dash-User-Contributions
