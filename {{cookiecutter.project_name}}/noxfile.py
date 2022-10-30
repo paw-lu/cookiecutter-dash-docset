@@ -70,7 +70,7 @@ def docs(session: Session) -> None:
     # have been added
     raise NotImplemented(
         "Replace starter code below with correct docs build steps."
-    )
+    )  {#- (1) #}
     # Instructions are usually found in a file named CONTRIBUTING.md,
     # or by copying the steps in the workflows found in
     # .github/workflows/
@@ -78,11 +78,11 @@ def docs(session: Session) -> None:
     # This is an example doc step process that works with most libraries
     # It may or may not work with the library you are targeting
     with session.chdir(LIBRARY_REPOSITORY):
-        session.install(".")
+        session.install(".")  {#- (2) #}
 
     with session.chdir(pathlib.Path(LIBRARY_REPOSITORY) / "docs"):
-        session.install("--requirement=requirements.txt")
-        session.run("make", "docs", external=True)
+        session.install("--requirement=requirements.txt")  {#- (3) #}
+        session.run("make", "docs", external=True)  {#- (4) #}
 
 
 {# --8<-- [end:docs] -#}
@@ -99,10 +99,11 @@ def icon(session: Session) -> None:
         # been added
         raise NotImplementedError(
             "Specify the correct path to the icon"
-        )
+        )  {#- (1) #}
         session.run(
             "convert",
-            "{{ cookiecutter.library_repository_name }}/path/to/icon.png",  # Specify correct path here
+            # Specify the correct path in the line below
+            "{{ cookiecutter.library_repository_name }}/path/to/icon.png",  {#- (2) #}
             "-resize",
             size,
             "-background",
