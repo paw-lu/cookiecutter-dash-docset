@@ -2,9 +2,47 @@
 
 A [cookiecutter] template
 for automating the generation of [documentation sets](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/Documentation_Sets/010-Overview_of_Documentation_Sets/docset_overview.html#//apple_ref/doc/uid/TP40005266-CH13-SW6)
-for use in [Dash](https://kapeli.com/dash) compatible API browsers using
+for use in [Dash] compatible API browsers using
 [doc2dash]
 and contributing to [Kapeli/Dash-User-Contributions].
+
+## What is this project?
+
+![Demo of Dash searching docs](assets/dash_demo.gif)
+
+[Dash][^1] is an app that lets you instantly search through documentation sets offline.
+[Hynek Schlawack has a great writeup on the benefits of using Dash.](https://hynek.me/articles/productive-fruit-fly-programmer/)
+If you find yourself
+with dozen documentation tabs open
+and repeatedly searching for how to use the same APIs,
+[Dash] might be useful for you.
+
+[Dash] comes with quite a few documentation sets,
+[but you can generate your own as well](https://kapeli.com/docsets).[^2]
+To make your generated documentation sets available to others
+you can contribute them to [Kapeli/Dash-User-Contributions].
+
+However,
+if you want to keep things up to date,
+when a new version of a library releases
+you need to:
+
+1. Clone the library
+2. Reinstall the dependencies
+3. Rebuild the docs
+4. Convert the docs to a Dash-compatible documentation set
+5. Create a pull request for [Kapeli/Dash-User-Contributions]
+
+This is tedious.
+As a result,
+many documentation sets don't keep up with their library's release.
+
+Cookiecutter Dash docset
+generates a repository that automates this process.
+After generating the project
+[and modifying the template in a couple of key areas](#generating-the-project),
+you should have a repository that automates the docset building process
+and automatically re-runs it on [GitHub Actions] with a new release of the library.
 
 ## Features
 
@@ -130,7 +168,7 @@ This template sets up the following chain of triggers:
 1. A new version of the library is released
 2. [Dependabot](https://github.com/dependabot)
    create a pull request against the repository,
-   which will trigger a build check on [GitHub Actions](https://github.com/features/actions)
+   which will trigger a build check on [GitHub Actions]
    to verify that the docs correctly build.
 3. The pull request will modify the library version in `./doc-requirements.txt`.
    This version will be compared against the current repository tag
