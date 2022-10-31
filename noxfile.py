@@ -13,3 +13,10 @@ def docs(session: Session) -> None:
 
     else:
         session.run("mkdocs", "build")
+
+
+@nox.session(name="deploy-docs")
+def deploy_docs(session: Session) -> None:
+    """Deploy the documentation."""
+    session.install("--requirement=docs/requirements.txt")
+    session.run("mkdocs", "gh-deploy", "--force")
