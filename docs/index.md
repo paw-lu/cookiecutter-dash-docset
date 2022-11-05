@@ -102,7 +102,52 @@ nothing needs to be installed
 
 ## Getting started
 
-### Modifying the template
+### Modifying the template's `noxfile.py`
+
+??? question "What's a `noxfile` and what's [nox]?"
+
+    [nox] is a command line tool for automating the building of environments
+    and running actions.
+    Cookiecutter dash docset uses it
+    to install the dependencies needed to build the documentation
+    and run the build commands.
+
+    There are 2–3 methods you will use:
+
+    1. [`Session.install`](https://nox.thea.codes/en/stable/config.html#nox.sessions.Session.install)
+       runs pip commands in the environment created by [nox].
+       So if creating your doc-building environment requires you to run:
+
+        ```console
+        % pip install .
+        % pip install --requirement=docs/requirements.txt
+        ```
+
+        This would translate to:
+
+        ```python
+        session.install(".")
+        session.install("--requirement=docs/requirements.txt")
+        ```
+
+     2. [Session.chdir]
+        Changes the current working directory.
+
+     3. [`Session.run`](https://nox.thea.codes/en/stable/config.html#nox.sessions.Session.run)
+        Runs a command in the environment created by [nox].
+        If building your docs requires you to run:
+
+         ```console
+         % cd docs
+         % make html
+         ```
+
+         We'll use [Session.chdir] to translate this to:
+
+         ```python
+         with session.chdir("docs"):
+            session.run("make", "html")
+         ```
 
 At least two modifications will need to be made to the template in `./noxfile.py`.
 First,
@@ -235,3 +280,5 @@ This template sets up the following chain of triggers:
 [doc2dash]: https://doc2dash.readthedocs.io/en/stable
 [github actions]: https://github.com/features/actions
 [kapeli/dash-user-contributions]: https://github.com/Kapeli/Dash-User-Contributions
+[nox]: https://nox.thea.codes/en/stable/
+[session.chdir]: https://nox.thea.codes/en/stable/config.html#nox.sessions.Session.chdir
