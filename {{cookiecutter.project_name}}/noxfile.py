@@ -354,7 +354,7 @@ def fill_forms(session: Session) -> None:
         ### Requirements
 
         - [git](https://git-scm.com/)
-        - [GitHub CLI (gh)](https://cli.github.com/)
+        - [GitHub CLI (`gh`)](https://cli.github.com/)
         - [GNU Make](https://www.gnu.org/software/make/)
         - [GNU Tar](https://www.gnu.org/software/tar/)
         - [ImageMagick](https://imagemagick.org/index.php)
