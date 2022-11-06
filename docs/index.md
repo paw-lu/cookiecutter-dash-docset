@@ -198,13 +198,76 @@ relative to the library's repository root.
    `{{ cookiecutter.library_repository_name }}` will automatically be replaced
    by the repository directory name.
 
-### Add a repository secret
+### Add `GH_TOKEN` as a repository secret
 
-Create a repository secret named `GH_TOKEN` with permissions:
+??? question "How to create a GitHub token"
 
-### Install additional dependencies in GitHub actions
+    Under your profile.
+    Go to `Settings`.
 
-This step may not be needed.
+    ![GitHub profile settings](assets/profile_settings.png)
+
+    Select :octicons-code-16: `Developer settings`
+
+    ![GitHub developer settings](assets/developer_settings.png)
+
+    Select :octicons-key-16: `Tokens`.
+
+    ![GitHub personal access tokens](assets/personal_access_tokens.png)
+
+    Finally,
+    select the scoped of your token.
+
+    ![GitHub token scopes](assets/token_scopes.png)
+
+Cookiecutter dash docset needs a GitHub token
+to create commits and pull requests on our behalf.
+Create a GitHub token with the following scopes:
+
+<!-- prettier-ignore -->
+- [x] **repo**
+    - [x] repo:status
+    - [x] repo_deployment
+    - [x] public_repo
+    - [x] repo:invite
+- [x] security_events
+- [x] **workflow**
+- [ ] **admin:org**
+    - [ ] write:org
+    - [x] read:org
+    - [ ] manage_runners:org
+
+??? question "How to add a GitHub repository secret"
+
+    On your GitHub repository,
+    go to the :octicons-gear-16: `Settings`
+
+    ![GitHub repository settings](assets/repository_settings.png)
+
+    Under :octicons-key-asterisk-16: `Secrets`,
+    select `Actions`.
+
+    ![GitHub actions secrets](assets/actions_secrets.png)
+
+    Create a repository secret
+    by clicking `New repository secret`.
+
+    ![GitHub create repository secret](assets/create_repository_secret.png)
+
+    Paste your token and name it `GH_TOKEN`.
+
+    ![GitHub create GH_TOKEN secret](assets/GH_TOKEN_secret.png)
+
+Add this token as a GitHub repository secret
+named `GH_TOKEN`.
+
+### Install additional dependencies in `.github/wor
+
+!!! note
+
+    This step is only needed
+    if building the documentation
+    requires dependencies that cannot be `pip` installed by [nox]
 
 Additionally,
 if there are additional non-python dependencies needed to build the docs
