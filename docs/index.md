@@ -261,7 +261,7 @@ Create a GitHub token with the following scopes:
 Add this token as a GitHub repository secret
 named `GH_TOKEN`.
 
-### Install additional dependencies in `.github/wor
+### Install additional dependencies in `.github/workflows/build_docs.yml`
 
 !!! note
 
@@ -271,7 +271,25 @@ named `GH_TOKEN`.
 
 Additionally,
 if there are additional non-python dependencies needed to build the docs
-add the installation steps in `.github/actions/build_docs.yml`
+add the installation steps in `.github/actions/build_docs.yml`.
+
+```yaml title=".github/workflows/build_docs.yml"
+--8<-- "{{cookiecutter.project_name}}/.github/workflows/build_docs.yml:dependencies"
+```
+
+1.  Here we could install extra dependencies
+    needed to build the docs.
+    For example,
+    if we need pandoc,
+    we can install it via the [`r-lib/actions/setup-pandoc@v2`](https://github.com/r-lib/actions/tree/v2/setup-pandoc) action.
+
+    ```yaml
+    - name: Setup pandoc
+      id: setup-pandoc
+      uses: r-lib/actions/setup-pandoc@v2
+      with:
+        pandoc-version: "2.17.1"
+    ```
 
 ## How it works
 
