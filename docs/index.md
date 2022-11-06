@@ -302,6 +302,25 @@ add the installation steps in `.github/actions/build_docs.yml`.
         pandoc-version: "2.17.1"
     ```
 
+## Running the project locally
+
+If the [needed depdendencies](#dependencies) are installed,
+you can run
+
+```console
+% nox --tags=build
+```
+
+to build the docset locally.
+and
+
+```console
+% nox --tags=contribute
+```
+
+To contribute the built docset.
+These are the exact commands that are ran on GitHub actions.
+
 ## How it works
 
 Cookiecutter Dash documentation sets automates
