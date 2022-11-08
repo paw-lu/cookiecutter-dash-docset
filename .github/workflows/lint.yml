@@ -1,11 +1,13 @@
-name: Docs
+name: Lint
 on:
+  pull_request:
   push:
     branches:
       - main
 
 jobs:
-  deploy:
+  lint:
+    name: lint
     runs-on: ubuntu-latest
 
     env:
@@ -20,13 +22,15 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Pre-commit
+        uses: pre-commit/action@v3.0.0
+
       - name: Setup Nox
         id: setup-nox
         uses: wntrblm/nox@2022.8.7
         with:
           python-versions: "3.10"
 
-      - name: Deploy docs
-        id: deploy-docs
+      - name: Check types
         run: |
-          nox --sessions deploy-docs
+          nox --sessions=check-types
