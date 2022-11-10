@@ -27,7 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "{{ cookiecutter.project_version }}"
+          python-version: "{{ cookiecutter.python_version }}"
 
       - name: Upgrade pip
         run: |
@@ -37,7 +37,7 @@ jobs:
       - name: Setup Nox
         uses: wntrblm/nox@2022.8.7
         with:
-          python-versions: "{{ cookiecutter.project_version }}"
+          python-versions: "{{ cookiecutter.python_version }}"
 
       - name: Pre-commit
         uses: pre-commit/action@v3.0.0
@@ -50,6 +50,8 @@ jobs:
         uses: mxschmitt/action-tmate@v3
         with:
           limit-access-to-actor: true
+        {% raw -%}
         if: ${{ github.event_name == 'workflow_dispatch'
           && github.event.inputs.debug_enabled
           && failure() }}
+        {%- endraw %}
