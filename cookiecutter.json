@@ -8,6 +8,5 @@
   "your_name": "Paulo S. Costa",
   "project_name": "{{ cookiecutter.library_repository_name|lower }}-dash-docset",
   "documentation_url": "https://pip.pypa.io/en/stable/",
-  "python_version": "3.10",
-  "_extensions": ["cookiecutter.extensions.JsonifyExtension"]
+  "python_version": "3.10"
 }
