@@ -71,9 +71,9 @@ def docs(session: Session) -> None:
     """Build {{ cookiecutter.library_name }}'s docs."""
     # Remove the NotImplemented error once the correct doc build steps
     # have been added
-    raise NotImplemented(
+    raise NotImplementedError(
         "Replace starter code below with correct docs build steps."
-    )  {#- (1) #}
+    ) {#- (1) #}
     # Instructions are usually found in a file named CONTRIBUTING.md,
     # or by copying the steps in the workflows found in
     # .github/workflows/
@@ -100,9 +100,8 @@ def icon(session: Session) -> None:
         # available by default right now in ubuntu-latest
         # Remove the NotImplementedError once the correct icon path has
         # been added
-        raise NotImplementedError(
-            "Specify the correct path to the icon"
-        )  {#- (1) #}
+        {#- (1) #}
+        raise NotImplementedError("Specify the correct path to the icon")
         session.run(
             "convert",
             # Specify the correct path in the line below
@@ -130,7 +129,7 @@ def dash(session: Session) -> None:
         "doc2dash",
         "--index-page=index.html",
         "--icon=icon.png",
-        "--online-redirect-url={{ cookiecutter.documentation_url }},
+        "--online-redirect-url={{ cookiecutter.documentation_url }}",
         f"{LIBRARY_REPOSITORY}/doc/_build/html",
         *session.posargs,
     )
@@ -252,7 +251,7 @@ def fork(session: Session) -> None:
             )
 
             if isinstance(origin_url, str):
-                token_url = n_add_github_token(origin_url, github_token=github_token)
+                token_url = _add_github_token(origin_url, github_token=github_token)
                 session.run("git", "remote", "remove", "origin", external=True)
                 session.run("git", "remote", "add", "origin", token_url, external=True)
 

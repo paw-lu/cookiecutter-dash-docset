@@ -37,17 +37,13 @@ jobs:
         run: |
           python -m pip install --constraint=.github/workflows/constraints.txt pip
           python -m pip --version
-
-{# --8<-- [start:dependencies] -#}
-
+{# --8<-- [start:dependencies] #}
       - name: Setup Nox
         id: setup-nox
         uses: wntrblm/nox@2022.8.7
         with:
           python-versions: "{{ cookiecutter.python_version }}"
-
-{# (1) -#}
-
+{# (1) #}
       - name: Build docs
         id: build-docs
         env:
@@ -56,9 +52,7 @@ jobs:
           {%- endraw %}
         run: |
           nox --tags build
-
-{# --8<-- [end:dependencies] -#}
-
+{# --8<-- [end:dependencies] #}
       - name: Check if there is a parent commit
         id: check-parent-commit
         {% raw -%}
