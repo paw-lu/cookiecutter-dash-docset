@@ -451,7 +451,7 @@ def pull_request(session: Session) -> None:
 def check_types(session: Session) -> None:
     """Check typing with mypy."""
     session.install("mypy", "nox", CONSTRAINTS_ARG)
-    session.run("mypy", "noxfile.py")
+    session.run("mypy", "noxfile.py", *session.posargs)
 
 
 @nox.session(python=PYTHON)
