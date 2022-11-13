@@ -459,8 +459,3 @@ def version(session: Session) -> None:
     """Print the doc version."""
     library_version = _get_library_version(session)
     print(library_version)
-
-
-@nox.session
-def nox_me(sessions):
-    print(_get_dash_docset_path())
