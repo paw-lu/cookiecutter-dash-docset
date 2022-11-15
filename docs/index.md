@@ -370,6 +370,46 @@ launching an action via workflow dispatch
 with `Manually trigger doc build and release.` set to `true`
 will manually trigger the doc build and contributions steps.
 
+## Code quality
+
+The generated project has some code quality tools set up:
+
+- **[flake8]**
+  for linting
+- **[Black]**
+  for autoformatting
+- **[Mypy]**
+  for type checking.
+
+Both [flake8] and [black] are ran via [pre-commit].
+If you have [pre-commit] installed,
+run
+
+```console
+% pre-commit install
+```
+
+in the repository to install [flake8] and [black] as pre-commit hooks.
+Every time you try to make a commit,
+the two will be ran to check your code.
+
+If [nox] is installed,
+run
+
+```console
+nox --session=check-types
+```
+
+to check types using [Mypy].
+
+All checks are enforced via GitHub actions on commits and pull requests.
+
+### Disabling
+
+Not interested in using these linters?
+Delete `.github/workflows/lint.yml`
+and you'll disable the GitHub actions code quality check runs.
+
 ## How it works
 
 Cookiecutter Dash documentation sets automates
@@ -435,10 +475,14 @@ This template sets up the following chain of triggers:
 
 [^2]: Tools like [doc2dash] help automate some of the generation.
 
+[black]: https://black.readthedocs.io/en/stable/
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [dash]: https://kapeli.com/dash
 [doc2dash]: https://doc2dash.readthedocs.io/en/stable
+[flake8]: https://flake8.pycqa.org/en/latest/
 [github actions]: https://github.com/features/actions
 [kapeli/dash-user-contributions]: https://github.com/Kapeli/Dash-User-Contributions
+[mypy]: https://mypy.readthedocs.io/en/stable/index.html
 [nox]: https://nox.thea.codes/en/stable/
+[pre-commit]: https://pre-commit.com/
 [session.chdir]: https://nox.thea.codes/en/stable/config.html#nox.sessions.Session.chdir
