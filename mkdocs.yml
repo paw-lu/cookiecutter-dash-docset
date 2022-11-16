@@ -1,14 +1,25 @@
 site_name: Cookiecutter Dash docset
 repo_url: https://github.com/paw-lu/cookiecutter-dash-docset/
 site_url: https://paw-lu.github.io/cookiecutter-dash-docset/
+
+nav:
+  - index.md
+  - generating_a_project.md
+  - modifying_the_project.md
+  - running_the_project_locally.md
+  - code_quality_tools.md
+  - advanced_github_actions_features.md
+  - how_it_works.md
+
 plugins:
   - search
   - social
+
 theme:
   name: material
+
   features:
     - navigation.instant
-    - navigation.tabs
     - content.code.annotate
 
   icon:
