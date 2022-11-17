@@ -10,7 +10,7 @@ def docs(session: Session) -> None:
     session.install("--requirement=docs/requirements.txt")
 
     if session.interactive:
-        session.run("open", "http://127.0.0.1:8000/")
+        session.run("open", "http://127.0.0.1:8000/", external=True)
         session.run("mkdocs", "serve", *session.posargs)
 
     else:
