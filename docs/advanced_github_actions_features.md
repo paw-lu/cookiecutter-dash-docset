@@ -38,11 +38,17 @@ and a failure occurs in the actions steps.
 
 ## Manually triggering a documentation build
 
-The contribution of the docset to [Kapeli/Dash-User-Contributions](https://github.com/Kapeli/Dash-User-Contributions)
-is triggered by a release of a new version.
-But,
-you can also trigger this event manually.
+A new version release of the documentation's library
+signals to this project
+that the docset is new
+and should be contributed to [Kapeli/Dash-User-Contributions](https://github.com/Kapeli/Dash-User-Contributions).
+You can also trigger this event manually.
 Similarly to [**Debugging GitHub action runs**](#debugging-github-action-runs),
 launching an action via workflow dispatch
 with `Manually trigger doc build and release.` set to `true`
-will manually trigger the doc build and contributions steps.
+will force the contribution steps to run
+regardless of whether the library version has changed.
+
+This is useful for when you initially create your repository
+and want to immediately contribute a new docset
+without having to wait for a new release.
