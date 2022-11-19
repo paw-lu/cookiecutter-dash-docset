@@ -339,7 +339,11 @@ def fill_forms(session: Session) -> None:
     dash_path = pathlib.Path(DOCSET_REPOSITORY, "docsets", LIBRARY_NAME)
     dash_docset_path = _get_dash_docset_path()
     docset_config_path = (dash_docset_path / "docset").with_suffix(".json")
-    json.dump(docset_config, docset_config_path.open("w"), indent=2)
+
+    with docset_config_path.open("w") as io:
+        json.dump(docset_config, io, indent=2)
+        io.write("\n")
+
     repo_path = f"{GITHUB_USER}/{GITHUB_REPO}"
     readme = textwrap.dedent(
         f"""\
