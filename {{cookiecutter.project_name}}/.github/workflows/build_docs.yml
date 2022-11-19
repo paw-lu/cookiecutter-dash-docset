@@ -73,15 +73,6 @@ jobs:
       - name: Setup git
         id: setup-git
         {% raw -%}
-        if: ${{ steps.check-version.outputs.tag }}
-        {%- endraw %}
-        run: |
-          git config --global user.name "cookiecutter-dash-docset"
-          git config --global user.email "cookiecutter.dash.docset@users.noreply.github.com"
-
-      - name: Contribute docs
-        id: contribute-docs
-        {% raw -%}
         if: ${{ (steps.check-version.outputs.tag
           && github.event_name == 'push'
           && github.ref_name == 'main'
@@ -90,9 +81,18 @@ jobs:
           github.event_name == 'workflow_dispatch'
           && github.event.inputs.manual_release
           ) }}
+        {%- endraw %}
+        run: |
+          git config --global user.name "cookiecutter-dash-docset"
+          git config --global user.email "cookiecutter.dash.docset@users.noreply.github.com"
+
+      - name: Contribute docs
+        id: contribute-docs
+        {% raw -%}
+        if: ${{ steps.setup-git.outcome == 'success' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          {%- endraw %}
+        {%- endraw %}
         run: |
           nox --tags contribute
 
