@@ -120,6 +120,12 @@ def icon(session: Session) -> None:
 
 
 {# --8<-- [end:icon] -#}
+def _get_docset_path() -> Path:
+    """Get path to created docset."""
+    docset_path = next(pathlib.Path(__file__).parent.glob("*.docset"))
+
+    return docset_path
+
 
 @nox.session(python=PYTHON, tags=["build"])
 def dash(session: Session) -> None:
@@ -135,7 +141,8 @@ def dash(session: Session) -> None:
     )
     # As of 3.0.0, doc2dash does not support 2x icons
     # See https://github.com/hynek/doc2dash/issues/130
-    shutil.copy("icon@2x.png", f"{LIBRARY_NAME}.docset/")
+    docset_path = _get_docset_path()
+    shutil.copy("icon@2x.png", os.fsdecode(docset_path))
 
 
 @functools.lru_cache
@@ -301,10 +308,10 @@ def remove_old(session: Session) -> None:
 @nox.session(python=False, name="copy-contents", tags=["contribute"])
 def copy_contents(session: Session) -> None:
     """Copy build docset contents into Dash User Contributions repo."""
-    build_path = pathlib.Path(f"{LIBRARY_NAME}.docset")
+    docset_path = _get_docset_path()
     dash_docset_path = _get_dash_docset_path()
 
-    for icon_path in build_path.glob("icon*.png"):
+    for icon_path in docset_path.glob("icon*.png"):
         shutil.copy(icon_path, dash_docset_path)
 
     zipped_docset_path = os.fsdecode(
@@ -315,7 +322,7 @@ def copy_contents(session: Session) -> None:
         "--exclude=.DS_Store",
         "-cvzf",
         zipped_docset_path,
-        f"{LIBRARY_NAME}.docset",
+        os.fsdecode(docset_path.name),
         external=True,
     )
 
