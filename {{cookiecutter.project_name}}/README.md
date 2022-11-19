@@ -1,6 +1,6 @@
 # {{ cookiecutter.library_name }} dash docset
 
-{% set linked_library = "[{{ cookiecutter.library_name }}]({{ cookiecutter.documentation_url }})" -%}
+{% set linked_library = "[" ~ cookiecutter.library_name ~ "](" ~ cookiecutter.documentation_url ~ ")" -%}
 
 Generates a [documentation set](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/Documentation_Sets/010-Overview_of_Documentation_Sets/docset_overview.html#//apple_ref/doc/uid/TP40005266-CH13-SW6)
 for {{ linked_library }}
