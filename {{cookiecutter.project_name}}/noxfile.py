@@ -127,16 +127,27 @@ def _get_docset_path() -> Path:
     return docset_path
 
 
+{# --8<-- [start:dash] -#}
+
 @nox.session(python=PYTHON, tags=["build"])
 def dash(session: Session) -> None:
     """Create dash docset."""
     session.install("doc2dash", CONSTRAINTS_ARG)
+    # Remove the NotImplementedError once the correct path to the build
+    # documentation has been added
+    raise NotImplementedError("Specity the correct path to the build documentation")
     session.run(
         "doc2dash",
         "--index-page=index.html",
         "--icon=icon.png",
         "--online-redirect-url={{ cookiecutter.documentation_url }}",
-        f"{LIBRARY_REPOSITORY}/doc/_build/html",
+        # Replace the path below with the correct path to the
+        # documentation
+        # For python libraries, most of the time the below will work as
+        # is
+        # You may run `nox --sessions clone docs` to observe where the
+        # build docs end up
+        f"{LIBRARY_REPOSITORY}/doc/_build/html",  {#- (1) #}
         *session.posargs,
     )
     # As of 3.0.0, doc2dash does not support 2x icons
@@ -144,6 +155,8 @@ def dash(session: Session) -> None:
     docset_path = _get_docset_path()
     shutil.copy("icon@2x.png", os.fsdecode(docset_path))
 
+
+{# --8<-- [end:dash] -#}
 
 @functools.lru_cache
 def _get_library_version(session: Session) -> str:
