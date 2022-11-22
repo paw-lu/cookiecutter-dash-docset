@@ -210,8 +210,7 @@ named `GH_TOKEN`.
     if building the documentation
     requires dependencies that cannot be `pip` installed by [nox]
 
-Additionally,
-if there are additional non-python dependencies needed to build the docs
+If there are additional non-python dependencies needed to build the docs
 add the installation steps in `.github/actions/build_docs.yml`.
 
 ```yaml title=".github/workflows/build_docs.yml"
