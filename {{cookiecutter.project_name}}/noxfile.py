@@ -135,6 +135,7 @@ def dash(session: Session) -> None:
     session.install("doc2dash", CONSTRAINTS_ARG)
     # Remove the NotImplementedError once the correct path to the build
     # documentation has been added
+    {#- (1) #}
     raise NotImplementedError("Specity the correct path to the build documentation")
     session.run(
         "doc2dash",
@@ -147,7 +148,7 @@ def dash(session: Session) -> None:
         # is
         # You may run `nox --sessions clone docs` to observe where the
         # build docs end up
-        f"{LIBRARY_REPOSITORY}/doc/_build/html",  {#- (1) #}
+        f"{LIBRARY_REPOSITORY}/doc/_build/html",  {#- (2) #}
         *session.posargs,
     )
     # As of 3.0.0, doc2dash does not support 2x icons

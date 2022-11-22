@@ -47,17 +47,17 @@
             session.run("make", "html")
          ```
 
-At least two modifications will need to be made to the template in `./noxfile.py`.
+A few modifications will need to be made to the template in `./noxfile.py`.
 First,
 specify the build steps for the library's documentation
 by modifying `docs`.
 
 !!! warning
 
-    Both of the functions you need to modify in `noxfile.py`—`docs`
-    and `icon`—have
-    `NotImplimented` errors in them by default
-    as a reminder to the user to make some changes to them.
+    All of the functions you need to modify in `noxfile.py`—`docs`
+    ,`icon`, and `dash`—are
+    set to raise `NotImplimented` errors
+    as a reminder to the user to make some changes.
     This will cause nox to fail by default.
     Remove them once you have completed your changes.
 
@@ -95,6 +95,49 @@ relative to the library's repository root.
    When you generate the project using [cookiecutter],
    `{{ cookiecutter.library_repository_name }}` will automatically be replaced
    by the repository directory name.
+
+Third,
+specify the correct path to the build documentation.
+Most Python libraries will build
+to `library_name/doc/_build/html`
+or `library_name/docs/_build/html`,
+so not much—if
+anything—will
+need to be changed.
+But there are some exceptions.
+If you're not sure where the build documentation will be located,
+run:
+
+```console
+% nox --sessions clone docs
+```
+
+See [Running the project locally]
+for more information
+on how to run this project
+on your machine.
+
+```python title="./noxfile.py"
+--8<-- "{{cookiecutter.project_name}}/noxfile.py:dash"
+```
+
+<!-- prettier-ignore -->
+1.   The `NotImplimentedError` line
+     is here to make sure you modify the path below.
+     Remove it after you're done.
+2.   If necessary,
+     replace this with the path to the build documentation.
+     The placeholder value will work for most cases.
+     If you're not sure of the path to the build documentation,
+     run:
+
+     ```console
+     % nox --session clone docs
+     ```
+
+     See [Running the project locally]
+     for more information on kicking off the build process
+     on your machine.
 
 ### Add `GH_TOKEN` as a repository secret
 
@@ -189,4 +232,5 @@ add the installation steps in `.github/actions/build_docs.yml`.
     ```
 
 [nox]: https://nox.thea.codes/en/stable/
+[running the project locally]: running_the_project_locally.md
 [session.chdir]: https://nox.thea.codes/en/stable/config.html#nox.sessions.Session.chdir
