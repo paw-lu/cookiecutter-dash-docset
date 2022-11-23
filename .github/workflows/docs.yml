@@ -1,5 +1,6 @@
 name: Docs
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -26,7 +27,14 @@ jobs:
         with:
           python-versions: "3.10"
 
+      - name: Build docs
+        id: build-docs
+        if: ${{ github.ref_name != 'main' }}
+        run: |
+          nox --sessions docs
+
       - name: Deploy docs
         id: deploy-docs
+        if: ${{ github.ref_name == 'main' && github.event_name == 'push' }}
         run: |
           nox --sessions deploy-docs
