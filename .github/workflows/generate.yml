@@ -31,7 +31,7 @@ jobs:
           cookiecutter --version
 
       - name: Setup Nox
-        uses: wntrblm/nox@2022.8.7
+        uses: wntrblm/nox@2022.11.21
         with:
           python-versions: "3.10"
 
