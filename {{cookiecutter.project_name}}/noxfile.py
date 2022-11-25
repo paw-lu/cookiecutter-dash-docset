@@ -355,7 +355,6 @@ def fill_forms(session: Session) -> None:
             "name": docset_author,
             "link": docset_author_url,
         },
-        "aliases": ["python", "graph", "matplotlib", "visualization", "data"],
     }
     dash_docset_path = _get_dash_docset_path()
     docset_config_path = (dash_docset_path / "docset").with_suffix(".json")
