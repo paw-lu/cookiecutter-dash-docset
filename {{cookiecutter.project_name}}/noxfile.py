@@ -39,6 +39,7 @@ def clone(session: Session) -> None:
     session.run("gh", "repo", "clone", repository_address, external=True)
 
     with session.chdir(LIBRARY_REPOSITORY):
+        {% if cookiecutter.repo_releases == "Has releases" -%}
         latest_release_tag_name = session.run(
             "gh",
             "api",
@@ -50,13 +51,40 @@ def clone(session: Session) -> None:
         )
 
         if isinstance(latest_release_tag_name, str):
-            stripped_tag_name = latest_release_tag_name.rstrip()
+            checkout_tag_name = latest_release_tag_name.rstrip()
+
+        {%- elif cookiecutter.repo_releases == "Just tags" -%}
+        tags_api_output = session.run(
+            "gh",
+            "api",
+            "--header=Accept: application/vnd.github+json",
+            f"/repos/{repository_address}/tags",
+            "--jq=.[].name",
+            external=True,
+            silent=True,
+        )
+
+        if isinstance(tags_api_output, str):
+            tag_names = tags_api_output.split()
+            numeric_tag_names = [
+                tag_name
+                for tag_name in tag_names
+                if tag_name.replace("v", "").replace(".", "").isnumeric()
+            ]
+            checkout_tag_name = max(
+                numeric_tag_names,
+                key=lambda tag_name: tuple(
+                    int(version_section)
+                    for version_section in tag_name.replace("v", "").split(".")
+                ),
+            )
+        {%- endif %}
             session.run(
                 "git",
                 "checkout",
-                f"tags/{stripped_tag_name}",
+                f"tags/{checkout_tag_name}",
                 "-b",
-                stripped_tag_name,
+                checkout_tag_name,
                 external=True,
             )
 
