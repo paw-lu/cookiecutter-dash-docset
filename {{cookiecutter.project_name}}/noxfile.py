@@ -355,9 +355,7 @@ def fill_forms(session: Session) -> None:
             "name": docset_author,
             "link": docset_author_url,
         },
-        "aliases": ["python", "graph", "matplotlib", "visualization", "data"],
     }
-    dash_path = pathlib.Path(DOCSET_REPOSITORY, "docsets", LIBRARY_NAME)
     dash_docset_path = _get_dash_docset_path()
     docset_config_path = (dash_docset_path / "docset").with_suffix(".json")
 
@@ -405,7 +403,7 @@ def fill_forms(session: Session) -> None:
         This project was generated from {COOKIECUTTER_PROJECT}.
     """
     )
-    (dash_path / "README").with_suffix(".md").write_text(readme)
+    (dash_docset_path / "README").with_suffix(".md").write_text(readme)
 
 
 @nox.session(python=PYTHON, tags=["contribute"])
