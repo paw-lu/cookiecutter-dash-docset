@@ -139,7 +139,18 @@ on your machine.
      for more information on kicking off the build process
      on your machine.
 
-### Add `GH_TOKEN` as a repository secret
+!!! example "Example `noxfile.py` modifications"
+
+    Here are some diffs to illustrate typical modifications
+    made to the default `noxfile.py`:
+
+    - [Arviz](https://github.com/paw-lu/arviz-dash-docset/commit/58e0b9d47328290ef31fb6446bee8a48004670af)
+    - [Nox](https://github.com/paw-lu/nox-dash-docset/commit/fb1d3cbfb9c4c6b7cdeda53939d171f7ca65952d)
+    - [Polars](https://github.com/paw-lu/polars-dash-docset/commit/19031411a8eb295eb5fd78d08ffbff1d60b42a13)
+    - [PyMC](https://github.com/paw-lu/pymc-dash-docset/commit/10969a24d57a2f236cf76f27ba3d8ac02dc001d8)
+    - [Invoke](https://github.com/paw-lu/invoke-dash-docset/commit/6117c119c3f18f1d946110d53f14758fb619735e)
+
+## Add `GH_TOKEN` as a repository secret
 
 ??? question "How to create a GitHub token"
 
@@ -208,7 +219,7 @@ named `GH_TOKEN`.
 
     This step is only needed
     if building the documentation
-    requires dependencies that cannot be `pip` installed by [nox]
+    requires dependencies that cannot be `pip` installed by [nox].
 
 If there are additional non-python dependencies needed to build the docs
 add the installation steps in `.github/actions/build_docs.yml`.
@@ -230,6 +241,11 @@ add the installation steps in `.github/actions/build_docs.yml`.
       with:
         pandoc-version: "2.17.1"
     ```
+
+!!! example "Examples of additional dependencies"
+
+    When building the docset for Polars
+    [we install Rust before we start the `Build docs` step](https://github.com/paw-lu/polars-dash-docset/commit/19031411a8eb295eb5fd78d08ffbff1d60b42a13).
 
 [nox]: https://nox.thea.codes/en/stable/
 [running the project locally]: running_the_project_locally.md
