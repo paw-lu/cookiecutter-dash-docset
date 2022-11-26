@@ -1,6 +1,7 @@
 {
   "library_name": "pip",
   "library_repository_name": "{{ cookiecutter.library_name|lower }}",
+  "repo_releases": ["Has releases", "Just tags"],
   "installable_name": "{{ cookiecutter.library_repository_name }}",
   "library_version": "22.3",
   "library_owner": "pypa",

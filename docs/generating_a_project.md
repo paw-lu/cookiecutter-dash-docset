@@ -32,6 +32,7 @@ You'll get some prompts asking you questions about the generated project:
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | `library_name`            | The name of the library you will generate a docset for.                                                                                       | `pip`                            |
 | `library_repository_name` | The name of the repository on GitHub for the library. By default set equal to `library_name`.                                                 | `pip`                            |
+| `repo_releases`           | How the repository records releases. Does it specifically specify releases, or does it just have tagged commits?                              | `Has releases`                   |
 | `installable_name`        | The name of the installable for the library. The thing you would type in when you `pip install`. By default set to `library_repository_name`. | `pip`                            |
 | `library_version`         | The version of the library to build the docs from.                                                                                            | `22.3`                           |
 | `library_owner`           | The GitHub owner name of the repository for the library.                                                                                      | `pypa`                           |
