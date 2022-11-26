@@ -150,7 +150,7 @@ on your machine.
     - [PyMC](https://github.com/paw-lu/pymc-dash-docset/commit/10969a24d57a2f236cf76f27ba3d8ac02dc001d8)
     - [Invoke](https://github.com/paw-lu/invoke-dash-docset/commit/6117c119c3f18f1d946110d53f14758fb619735e)
 
-### Add `GH_TOKEN` as a repository secret
+## Add `GH_TOKEN` as a repository secret
 
 ??? question "How to create a GitHub token"
 
